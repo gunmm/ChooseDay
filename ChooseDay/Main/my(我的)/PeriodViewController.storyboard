@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="d7a-UG-P0t">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Period View Controller-->
+        <scene sceneID="eRn-aM-47a">
+            <objects>
+                <tableViewController id="d7a-UG-P0t" customClass="PeriodViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zrc-xt-pcm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="4jh-RW-ReZ">
+                            <rect key="frame" x="0.0" y="188" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoo-qu-FPu">
+                                    <rect key="frame" x="10" y="0.0" width="580" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="H3b-40-0tK"/>
+                                        <constraint firstAttribute="width" constant="580" id="VY9-9a-OCY"/>
+                                    </constraints>
+                                    <state key="normal" title="完成设置">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="finishBtnAct:" destination="d7a-UG-P0t" eventType="touchUpInside" id="9Fq-ov-LS1"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="qoo-qu-FPu" secondAttribute="trailing" constant="10" id="J5Z-Uu-8D5"/>
+                                <constraint firstItem="qoo-qu-FPu" firstAttribute="leading" secondItem="4jh-RW-ReZ" secondAttribute="leading" constant="10" id="JFQ-F9-IsB"/>
+                                <constraint firstItem="qoo-qu-FPu" firstAttribute="top" secondItem="4jh-RW-ReZ" secondAttribute="top" id="KrF-mu-fbL"/>
+                                <constraint firstAttribute="bottom" secondItem="qoo-qu-FPu" secondAttribute="bottom" id="duA-wT-VNA"/>
+                            </constraints>
+                        </view>
+                        <sections>
+                            <tableViewSection headerTitle=" " footerTitle=" " id="HK3-U8-cWj">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" tag="1" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" id="nlU-bW-OXZ">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nlU-bW-OXZ" id="e3N-Qe-Wap">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最近月经" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsR-Hg-7LJ">
+                                                    <rect key="frame" x="20" y="2" width="100" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="PdS-kH-WsV"/>
+                                                        <constraint firstAttribute="height" constant="40" id="gPQ-gC-lYY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哪天来的" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zit-Cm-m8o">
+                                                    <rect key="frame" x="380" y="2" width="200" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="3yz-eJ-IMM"/>
+                                                        <constraint firstAttribute="width" constant="200" id="jzg-tI-ef9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.70441479949999997" green="0.70441479949999997" blue="0.70441479949999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zit-Cm-m8o" firstAttribute="top" secondItem="e3N-Qe-Wap" secondAttribute="top" constant="2" id="A7c-yG-08k"/>
+                                                <constraint firstAttribute="bottom" secondItem="zit-Cm-m8o" secondAttribute="bottom" constant="1" id="B51-oh-exU"/>
+                                                <constraint firstItem="YsR-Hg-7LJ" firstAttribute="leading" secondItem="e3N-Qe-Wap" secondAttribute="leading" constant="20" id="BfF-Or-JPw"/>
+                                                <constraint firstItem="YsR-Hg-7LJ" firstAttribute="top" secondItem="e3N-Qe-Wap" secondAttribute="top" constant="2" id="e4D-y0-GcB"/>
+                                                <constraint firstAttribute="bottom" secondItem="YsR-Hg-7LJ" secondAttribute="bottom" constant="1" id="iih-Ef-cb9"/>
+                                                <constraint firstAttribute="trailing" secondItem="zit-Cm-m8o" secondAttribute="trailing" constant="20" id="xuv-qF-AKE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" tag="2" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell2" id="TWC-0w-iHt">
+                                        <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TWC-0w-iHt" id="nFI-Uc-PNj">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月经周期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQt-md-Np9">
+                                                    <rect key="frame" x="20" y="2" width="100" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="aqq-9i-wkh"/>
+                                                        <constraint firstAttribute="width" constant="100" id="nif-Iq-5uP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="两次月经第一天的间隔天数" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXP-hl-WsQ">
+                                                    <rect key="frame" x="330" y="2" width="250" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="250" id="jPd-ue-VZj"/>
+                                                        <constraint firstAttribute="height" constant="40" id="pb6-Iu-20j"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.70441479949999997" green="0.70441479949999997" blue="0.70441479949999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OXP-hl-WsQ" firstAttribute="top" secondItem="nFI-Uc-PNj" secondAttribute="top" constant="2" id="JgY-NX-kML"/>
+                                                <constraint firstItem="nQt-md-Np9" firstAttribute="leading" secondItem="nFI-Uc-PNj" secondAttribute="leading" constant="20" id="TYk-ll-Q6A"/>
+                                                <constraint firstAttribute="bottom" secondItem="nQt-md-Np9" secondAttribute="bottom" constant="1" id="cf4-zr-SKJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="OXP-hl-WsQ" secondAttribute="trailing" constant="20" id="hYu-i1-q5C"/>
+                                                <constraint firstAttribute="bottom" secondItem="OXP-hl-WsQ" secondAttribute="bottom" constant="1" id="mE4-jd-KFT"/>
+                                                <constraint firstItem="nQt-md-Np9" firstAttribute="top" secondItem="nFI-Uc-PNj" secondAttribute="top" constant="2" id="xq3-G9-9Rr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" tag="3" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell3" id="gN4-CP-bGF">
+                                        <rect key="frame" x="0.0" y="116" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gN4-CP-bGF" id="5of-NA-xdq">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="行经天数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrE-XU-SUR">
+                                                    <rect key="frame" x="20" y="2" width="100" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="6Ba-ap-m5y"/>
+                                                        <constraint firstAttribute="width" constant="100" id="ibh-lM-8Ke"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来大姨妈的实际天数" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbH-FF-Dpb">
+                                                    <rect key="frame" x="380" y="2" width="200" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="0eF-If-zHZ"/>
+                                                        <constraint firstAttribute="width" constant="200" id="2WC-kr-DsX"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.70441479949999997" green="0.70441479949999997" blue="0.70441479949999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="VbH-FF-Dpb" secondAttribute="trailing" constant="20" id="6v9-ir-D6J"/>
+                                                <constraint firstItem="LrE-XU-SUR" firstAttribute="leading" secondItem="5of-NA-xdq" secondAttribute="leading" constant="20" id="UG2-XL-i5T"/>
+                                                <constraint firstItem="VbH-FF-Dpb" firstAttribute="top" secondItem="5of-NA-xdq" secondAttribute="top" constant="2" id="eNY-G2-Hn7"/>
+                                                <constraint firstAttribute="bottom" secondItem="VbH-FF-Dpb" secondAttribute="bottom" constant="1" id="h4Q-HB-oOO"/>
+                                                <constraint firstItem="LrE-XU-SUR" firstAttribute="top" secondItem="5of-NA-xdq" secondAttribute="top" constant="2" id="rAO-m5-5bl"/>
+                                                <constraint firstAttribute="bottom" secondItem="LrE-XU-SUR" secondAttribute="bottom" constant="1" id="yhC-a0-piv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="d7a-UG-P0t" id="ecv-nT-O6S"/>
+                            <outlet property="delegate" destination="d7a-UG-P0t" id="UE8-P2-yM3"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="dateLabel" destination="zit-Cm-m8o" id="Xso-0r-Lka"/>
+                        <outlet property="finishBtn" destination="qoo-qu-FPu" id="Obd-P4-llW"/>
+                        <outlet property="intervalLabel" destination="OXP-hl-WsQ" id="SZH-hG-zf6"/>
+                        <outlet property="realityLabel" destination="VbH-FF-Dpb" id="qts-mo-0LD"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pUq-Wd-0ww" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="119" y="249"/>
+        </scene>
+    </scenes>
+</document>

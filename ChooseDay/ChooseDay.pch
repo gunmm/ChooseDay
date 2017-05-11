@@ -1,0 +1,63 @@
+//
+//  ChooseDay.pch
+//  ChooseDay
+//
+//  Created by Rockeen on 16/1/17.
+//  Copyright © 2016年 DreamThreeMusketeers. All rights reserved.
+//
+
+#ifndef ChooseDay_pch
+#define ChooseDay_pch
+
+#import "UIViewExt.h"
+
+
+#import "Masonry.h"
+
+#import "ChooseDayUse.h"
+
+
+#define nomalColor [UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:1]//默认颜色
+
+//#define kMainColor [UIColor colorWithRed:250/255.0 green:128/255.0 blue:114/255.0 alpha:1]//navi主颜色
+
+#define kMainColor [[NSUserDefaults standardUserDefaults] valueForKey:@"mainColor"]
+
+#define kBgColor   [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1];//背景颜色
+
+#define kScreenW [UIScreen mainScreen].bounds.size.width
+#define kScreenH [UIScreen mainScreen].bounds.size.height
+
+//历史城市
+#define kHistoryData [[NSUserDefaults standardUserDefaults] valueForKey:@"historyData"]
+
+//当前主题
+#define kNowTheme [[NSUserDefaults standardUserDefaults] valueForKey:@"knowTheme"]
+
+
+//ChooseDay账号
+#define kUserName [[NSUserDefaults standardUserDefaults] valueForKey:@"username"]
+#define kUserImgName [[NSUserDefaults standardUserDefaults] valueForKey:@"imgName"]
+
+
+//友盟
+#define kUMAppkey @"569d0ff2e0f55a6d6c0006b7"
+
+//腾讯开放平台
+#define kAppID @"1105132436"
+#define kAPPKEY @"Mx3u3wDZxwpC9ghD"
+#define kQQAccessToken [[NSUserDefaults standardUserDefaults]valueForKey:@"kAccess_token"]
+#define kQQOpenID [[NSUserDefaults standardUserDefaults]valueForKey:@"kOpenID"]
+#define kQQExpirationDate [[NSUserDefaults standardUserDefaults]valueForKey:@"kExpirationDate"]
+
+//新浪微博
+#define kAppKey @"3286697984"
+#define kAppRedirectURL @"https://api.weibo.com/oauth2/default.html" //授权回调页
+#define kAccessToken [[NSUserDefaults standardUserDefaults]valueForKey:@"access_token"]
+#define kUserID [[NSUserDefaults standardUserDefaults]valueForKey:@"kUserID"]
+
+//微信分享
+#define kWXAppID @"wx206435ce8d904479"
+#define kWXAppSecret @"9e6cac6fb53945ce8a6c5bd03fdf8215"
+
+#endif /* ChooseDay_pch */

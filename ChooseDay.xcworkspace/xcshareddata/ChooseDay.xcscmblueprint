@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AB0FB72AF77DDFC087C43E22EEBC59812CA7F071",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "edda36ef-85a5-004d-9115-9a14e77ad9fc++5282" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "edda36ef-85a5-004d-9115-9a14e77ad9fc++5282" : 0,
+    "AB0FB72AF77DDFC087C43E22EEBC59812CA7F071" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "986D7855-23B6-4907-930B-A472CA042F12",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "edda36ef-85a5-004d-9115-9a14e77ad9fc++5282" : "ChooseDay\/ChooseDay\/ChooseDay\/Common\/MBProgressHUD\/",
+    "AB0FB72AF77DDFC087C43E22EEBC59812CA7F071" : "ChooseDay\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ChooseDay",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ChooseDay\/ChooseDay.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/rockeen\/ChooseDay",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AB0FB72AF77DDFC087C43E22EEBC59812CA7F071"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/168.168.1.183\/svn\/iOS",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "edda36ef-85a5-004d-9115-9a14e77ad9fc++5282"
+    }
+  ]
+}

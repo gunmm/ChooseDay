@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>realityDay</key>
+	<array>
+		<string>2天</string>
+		<string>3天</string>
+		<string>4天</string>
+		<string>5天</string>
+		<string>6天</string>
+		<string>7天</string>
+		<string>8天</string>
+		<string>9天</string>
+	</array>
+	<key>intervalDay</key>
+	<array>
+		<string>不清楚</string>
+		<string>15天</string>
+		<string>16天</string>
+		<string>17天</string>
+		<string>18天</string>
+		<string>19天</string>
+		<string>20天</string>
+		<string>21天</string>
+		<string>22天</string>
+		<string>23天</string>
+		<string>24天</string>
+		<string>25天</string>
+		<string>26天</string>
+		<string>27天</string>
+		<string>28天</string>
+		<string>29天</string>
+		<string>30天</string>
+		<string>31天</string>
+		<string>32天</string>
+		<string>33天</string>
+		<string>34天</string>
+		<string>35天</string>
+		<string>36天</string>
+		<string>37天</string>
+		<string>38天</string>
+		<string>39天</string>
+		<string>40天</string>
+	</array>
+</dict>
+</plist>
