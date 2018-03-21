@@ -7,7 +7,6 @@
 //
 
 #import "ChangePWDViewController.h"
-#import <MaxLeap/MaxLeap.h>
 
 @interface ChangePWDViewController ()<UITextFieldDelegate,UIAlertViewDelegate>
 {
@@ -196,66 +195,6 @@
 
 //确认按钮的点击方法
 -(void)btnAct:(UIButton *)btn{
-    
-    //如果是登录状态
-    if (kUserName) {
-        
-        [[MLUser currentUser] checkIsPasswordMatchInBackground:oldPwd.text block:^(BOOL succeeded, NSError * _Nullable error) {
-            
-            if (succeeded) {
-                
-                //判断输入的密码是否一致
-                if ([newPwd.text isEqual:newPwd2.text]) {
-                    
-                    //修改密码
-                    [MLUser currentUser].password = newPwd.text;
-                    
-                    [[MLUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                        
-                        NSLog(@"sucsess");
-                        
-                    }];
-                    
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您的密码已修改" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    
-                    alert.alertViewStyle = UIAlertViewStyleDefault;
-                    
-                    alert.tag = 13;
-                    
-                    [alert show];
-                    
-                    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"username"];
-                    
-                }else {
-                    
-                    //如果输入的密码不一致
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"输入密码不一致" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    
-                    alert.alertViewStyle = UIAlertViewStyleDefault;
-                    
-                    alert.tag = 10;
-                    
-                    [alert show];
-                    
-                }
-                
-            }
-            
-        }];
-        
-    }else {
-        
-        //如果是非登录状态
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"用户未登录！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        
-        alert.alertViewStyle = UIAlertViewStyleDefault;
-        
-        alert.tag = 11;
-        
-        [alert show];
-    
-    }
-
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

@@ -14,14 +14,10 @@
 #import "ZXYTabBarController.h"
 #import "ThreeNavigationController.h"
 #import "UIImage+RTTint.h"
-#import <TencentOpenAPI/TencentOAuth.h>
-#import "UMSocial.h"
-#import "UMSocialQQHandler.h"
-#import "UMSocialWechatHandler.h"
-#import <MaxLeap/MaxLeap.h>
+
 #import "GuideView.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<CLLocationManagerDelegate>
 {
 
     BOOL isFirstLoad;//记录是否是第一次进入App
@@ -128,34 +124,7 @@
     //接收通知
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(oauthFunc) name:@"weibologin" object:nil];
     
-    //分享功能
-    [UMSocialData setAppKey:kUMAppkey];
-    
-    //打开调试log的开关
-    [UMSocialData openLog:YES];
-    
-    //    //设置分享到QQ空间的应用Id，和分享url 链接
-    [UMSocialQQHandler setQQWithAppId:kAppID appKey:kAPPKEY url:@"http://www.umeng.com/social"];
-    //    //设置支持没有客户端情况下使用SSO授权
-    [UMSocialQQHandler setSupportWebView:YES];
-    
-    //设置微信AppId，设置分享url，默认使用友盟的网址
-    [UMSocialWechatHandler setWXAppId:kWXAppID appSecret:kWXAppSecret url:@"http://www.umeng.com/social"];
-    
-    
-    //链接服务器
-    [MaxLeap setApplicationId:@"56ca625760b2b393412e7d29" clientKey:@"YkNIQUVPM3JMTUdLT2wzaUdPVzJ3Zw" site:MLSiteCN];
-    
-//    [MaxLeap setApplicationId:@"your_application_id" clientKey:@"your_client_key" site:MLSiteCN];
-    
-    MLObject *obj = [MLObject objectWithoutDataWithClassName:@"Test" objectId:@"561c83c0226"];
-    [obj fetchIfNeededInBackgroundWithBlock:^(MLObject * _Nullable object, NSError * _Nullable error) {
-        if (error.code == kMLErrorInvalidObjectId) {
-            NSLog(@"已经能够正确连接上您的云端应用");
-        } else {
-            NSLog(@"应用访问凭证不正确，请检查。");
-        }
-    }];
+  
     
 }
 -(void)loadViewController{
@@ -164,67 +133,49 @@
     [self initLocManager];
 
     
-    ZXYTabBarController *tabBar=[[ZXYTabBarController alloc]init];
-    
+    UITabBarController *tabBar=[[UITabBarController alloc]init];
     NSMutableArray *arr = kMainColor;
-    tabBar.selectLabColor=[UIColor colorWithRed:[arr[0] floatValue] green:[arr[1] floatValue] blue:[arr[2] floatValue] alpha:1];
-    tabBar.nomalLabColor=nomalColor;
+//    tabBar.selectLabColor=[UIColor colorWithRed:[arr[0] floatValue] green:[arr[1] floatValue] blue:[arr[2] floatValue] alpha:1];
+//    tabBar.nomalLabColor=nomalColor;
     
-    
+    tabBar.tabBar.tintColor = [UIColor colorWithRed:[arr[0] floatValue] green:[arr[1] floatValue] blue:[arr[2] floatValue] alpha:1];
+
     //创建子视图控制器
     
     //日历视图控制器
-    CalaViewController *calendarVc=[[CalaViewController alloc]init];
+    CalaViewController *calendarVc=[[CalaViewController alloc] init];
     ThreeNavigationController *calendarNc=[[ThreeNavigationController alloc]initWithRootViewController:calendarVc];
-    
-    
-    
-    calendarVc.tabBarItem.image=[[UIImage imageNamed:@"calendar"]
-                                 rt_tintedImageWithColor:nomalColor level:1];
-    calendarVc.tabBarItem.selectedImage=[[UIImage imageNamed:@"calendar"]
-                                         rt_tintedImageWithColor:[UIColor colorWithRed:[arr[0] floatValue] green:[arr[1] floatValue] blue:[arr[2] floatValue] alpha:1] level:1];
-    calendarVc.title=@"日历";
+    calendarVc.tabBarItem.image = [UIImage imageNamed:@"calendar"];
+    calendarVc.title = @"日历";
     
     
     //星座视图控制器
-    ConstellationViewController *constellationVc=[[ConstellationViewController alloc]init];
-    ThreeNavigationController *constellationNc=[[ThreeNavigationController alloc]initWithRootViewController:constellationVc];
+    ConstellationViewController *constellationVc = [[ConstellationViewController alloc]init];
+    ThreeNavigationController *constellationNc = [[ThreeNavigationController alloc]initWithRootViewController:constellationVc];
     
-    constellationVc.tabBarItem.image=[[UIImage imageNamed:@"luck"]
-                                      rt_tintedImageWithColor:nomalColor level:1];
-    constellationVc.tabBarItem.selectedImage=[[UIImage imageNamed:@"luck"]rt_tintedImageWithColor:[UIColor colorWithRed:[arr[0] floatValue] green:[arr[1] floatValue] blue:[arr[2] floatValue] alpha:1] level:1];
-
+    constellationVc.tabBarItem.image = [UIImage imageNamed:@"luck"];
     constellationVc.title=@"星座";
     
     
     //天气视图控制器
-    weatherVc=[[WeatherViewController alloc]init];
-    ThreeNavigationController *weatherNc=[[ThreeNavigationController alloc]initWithRootViewController:weatherVc];
+    weatherVc = [[WeatherViewController alloc] init];
+    ThreeNavigationController *weatherNc = [[ThreeNavigationController alloc]initWithRootViewController:weatherVc];
     
-    weatherVc.tabBarItem.image=[[UIImage imageNamed:@"weather"]
-                                rt_tintedImageWithColor:nomalColor level:1];
-    weatherVc.tabBarItem.selectedImage=[[UIImage imageNamed:@"weather"]
-                                        rt_tintedImageWithColor:[UIColor colorWithRed:[arr[0] floatValue] green:[arr[1] floatValue] blue:[arr[2] floatValue] alpha:1] level:1];
+    weatherVc.tabBarItem.image = [UIImage imageNamed:@"weather"];
     weatherVc.title=@"天气";
     
     
     //我的视图控制器
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MyViewController" bundle:nil];
-    
     MyViewController *myVc = [storyBoard instantiateInitialViewController];
     
-    //    MyViewController *myVc=[[MyViewController alloc]init];
     ThreeNavigationController *myNc=[[ThreeNavigationController alloc]initWithRootViewController:myVc];
     
-    myVc.tabBarItem.image=[[UIImage imageNamed:@"my"]
-                           rt_tintedImageWithColor:nomalColor level:1];
-    myVc.tabBarItem.selectedImage=[[UIImage imageNamed:@"my"]
-                                   rt_tintedImageWithColor:[UIColor colorWithRed:[arr[0] floatValue] green:[arr[1] floatValue] blue:[arr[2] floatValue] alpha:1] level:1];
+    myVc.tabBarItem.image=[UIImage imageNamed:@"my"];
     myVc.title=@"我的";
     
     //tabbar的主控制器
     tabBar.viewControllers=@[calendarNc,constellationNc,weatherNc,myNc];
-    
     self.window.rootViewController=tabBar;
     
 }
@@ -280,32 +231,6 @@
 
 }
 
-//第三方应用授权
--(void)oauthFunc{
-
-    //设置开启调试模式
-    [WeiboSDK enableDebugMode:YES];
-    
-    //注册appKey
-    [WeiboSDK registerApp:kAppKey];
-    
-    if (!kAccessToken) {
-    
-        //初始化请求
-        WBAuthorizeRequest *request = [WBAuthorizeRequest request];
-        
-        //设置权限
-        request.scope = @"all";
-        
-        //设置授权回调页
-        request.redirectURI = kAppRedirectURL;
-        
-        //发送请求
-        [WeiboSDK sendRequest:request];
-        
-    }
-
-}
 
 //移除通知
 -(void)dealloc{
@@ -314,51 +239,8 @@
 
 }
 
--(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-//    NSLog(@"url is%@",url);
-    
-    return [WeiboSDK handleOpenURL:url delegate:self] || [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
-        
-}
 
--(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
 
-    return [WeiboSDK handleOpenURL:url delegate:self];
-
-}
-
--(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-
-//    NSLog(@"url is%@",url);
-
-    return [TencentOAuth HandleOpenURL:url];
-
-}
-
-//接收微博响应的信息
--(void)didReceiveWeiboResponse:(WBBaseResponse *)response{
-    
-    //获取token
-    NSString *access_token = [(WBAuthorizeResponse *)response accessToken];
-    
-    //将token持久化保存
-    [[NSUserDefaults standardUserDefaults] setObject:access_token forKey:@"access_token"];
-    
-    //将用户id持久化保存
-    [[NSUserDefaults standardUserDefaults] setObject:[(WBAuthorizeResponse *)response userID] forKey:@"kUserID"];
-    
-    //将刷新口令持久化保存
-    [[NSUserDefaults standardUserDefaults] setObject:[(WBAuthorizeResponse *)response refreshToken] forKey:@"kRefreshToken"];
-    
-    //设置为nil----相当于重新请求了url
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"kOpenID"];
-    
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"username"];
-
-    //发出更新通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"updateWeiboData" object:nil];
-    
-}
 
 //初始化_locManager
 - (void)initLocManager{

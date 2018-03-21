@@ -1,6 +1,0 @@
-framework module MaxLeap {
-  umbrella header "MaxLeap.h"
-
-  export *
-  module * { export * }
-}

@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WeiboSDK.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,WeiboSDKDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 //加载视图

@@ -9,14 +9,13 @@
 #import "InstallViewController.h"
 #import "ChangePWDViewController.h"
 #import "ServiceViewController.h"
-#import <TencentOpenAPI/TencentOAuth.h>
+
 #import "EnterViewController.h"
-#import "UMSocial.h"
-#import <MaxLeap/MaxLeap.h>
+
 #import "SDImageCache.h"
 
 
-@interface InstallViewController ()<UITableViewDataSource,UITableViewDelegate,UMSocialUIDelegate,UIAlertViewDelegate>
+@interface InstallViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
 
     NSArray *_dataList;
@@ -73,18 +72,7 @@
 
 //创建分享视图
 -(void)createActionSheet{
-//    
-    [UMSocialData defaultData].extConfig.qqData.shareText = @"分享到新浪微博内容1";
-    [UMSocialData defaultData].extConfig.qqData.url = @"http://www.baidu.com";
-    NSString *shareText = @"ChooseDay~";             //分享内嵌文字
-    UIImage *shareImage = [UIImage imageNamed:@"afc0ca93e673abd3f0a2f5bd60eabea6.jpg"];
-    
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:kUMAppkey
-                                      shareText:shareText
-                                     shareImage:shareImage
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToQQ,UMShareToSina,UMShareToWechatSession, UMShareToQzone, nil]
-                                       delegate:self];
+
     
 
     
@@ -233,16 +221,10 @@
 
 // 判断是否登录状态
 - (BOOL)isLoggedIn {
-    return [MLUser currentUser] &&  ! [MLAnonymousUtils isLinkedWithUser:[MLUser currentUser]];
+    return NO ;
 }
 
-- (MLUser *)currentUser {
-    if ([self isLoggedIn]) {
-        return [MLUser currentUser];
-    } else {
-        return nil;
-    }
-}
+
 
 
 -(void)ExitBtnAct:(UIButton *)btn{
@@ -269,7 +251,6 @@
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"username"];
 
         //退出自有账号账号的登陆
-        [MLUser logOut];
         
         //发送通知，退出登录
         [[NSNotificationCenter defaultCenter]postNotificationName:@"exitLogin" object:nil];

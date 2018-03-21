@@ -33,6 +33,11 @@
     CGFloat imgVY=5;
     
     _imgV = [[UIImageView alloc] initWithFrame:CGRectMake(imgVX, imgVY, imgVW, imgVH)];
+    _imgV.contentMode = UIViewContentModeScaleToFill;
+    
+//    UIViewContentModeScaleToFill,
+//    UIViewContentModeScaleAspectFit,      // contents scaled to fit with fixed aspect. remainder is transparent
+//    UIViewContentModeScaleAspectFill,
 
     //设置imgV的image属性  数据来源于传入的item参数
     _imgV.image = item.image;

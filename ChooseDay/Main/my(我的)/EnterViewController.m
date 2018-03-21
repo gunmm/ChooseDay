@@ -7,18 +7,15 @@
 //
 
 #import "EnterViewController.h"
-#import "RegisterViewController.h"
 #import "AppDelegate.h"
 #import "MyViewController.h"
 #import "UIImageView+WebCache.h"
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+Add.h"
 
-#import <MaxLeap/MaxLeap.h>
 
-#import <TencentOpenAPI/TencentOAuth.h>
 
-@interface EnterViewController ()<UITextFieldDelegate,TencentSessionDelegate>
+@interface EnterViewController ()<UITextFieldDelegate>
 
 {
 
@@ -27,8 +24,6 @@
     UITextField *nameText;
 
     
-    //腾讯
-    TencentOAuth *_tencentOAuth;
     
     MyViewController *_myVC;
     
@@ -87,7 +82,6 @@
 //初始化Tencent
 -(void)initTencent{
 
-    _tencentOAuth = [[TencentOAuth alloc]initWithAppId:kAppID andDelegate:self];
 
 }
 
@@ -249,19 +243,16 @@
 //qq登录btn的点击方法
 -(void)qqBtnAct:(UIButton *)btn{
 
-    //获取用户的参数---用户信息、移动端获取用户信息、同步分享到QQ空间和微博
-    NSArray *permissons = [NSArray arrayWithObjects:kOPEN_PERMISSION_GET_USER_INFO, kOPEN_PERMISSION_GET_SIMPLE_USER_INFO, kOPEN_PERMISSION_ADD_SHARE, nil];
-
-    [_tencentOAuth authorize:permissons inSafari:NO];
+    
     
 }
 
 //注册btn的点击方法
 -(void)rightBtnAct:(UIButton *)btn{
 
-    RegisterViewController *registerVC = [[RegisterViewController alloc]init];
-    
-    [self.navigationController pushViewController:registerVC animated:YES];
+//    RegisterViewController *registerVC = [[RegisterViewController alloc]init];
+//    
+//    [self.navigationController pushViewController:registerVC animated:YES];
 
 }
 
@@ -293,31 +284,31 @@
         
     }
     
-    [MLUser logInWithUsernameInBackground:username password:password block:^(MLUser *user, NSError *error) {
-        if (user) {
-            
-            NSLog(@"user %@",user);
-//            NSLog(@"user: %@, isNew: %d", user, user.isNew);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"MLUserDidLoginNotification" object:self];
-            
-            //登陆成功用户名缓存
-            _userDefault = [NSUserDefaults standardUserDefaults];
-
-            [_userDefault setObject:nameText.text forKey:@"username"];
-
-    
-            //跳转回
-             [self.navigationController popViewControllerAnimated:YES];
-       
-        } else {
-            
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登录失败" message:[NSString stringWithFormat:@"Code: %ld\n%@", (long)error.code, error.localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            
-            [alertView show];
-            
-        }
-        
-    }];
+//    [MLUser logInWithUsernameInBackground:username password:password block:^(MLUser *user, NSError *error) {
+//        if (user) {
+//
+//            NSLog(@"user %@",user);
+////            NSLog(@"user: %@, isNew: %d", user, user.isNew);
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"MLUserDidLoginNotification" object:self];
+//
+//            //登陆成功用户名缓存
+//            _userDefault = [NSUserDefaults standardUserDefaults];
+//
+//            [_userDefault setObject:nameText.text forKey:@"username"];
+//
+//
+//            //跳转回
+//             [self.navigationController popViewControllerAnimated:YES];
+//
+//        } else {
+//
+//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登录失败" message:[NSString stringWithFormat:@"Code: %ld\n%@", (long)error.code, error.localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//
+//            [alertView show];
+//
+//        }
+//
+//    }];
     
     //设置为nil---相当于重新请求数据
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"access_token"];
@@ -326,61 +317,6 @@
 
 }
 
-//获取个人信息
--(void)getUserInfoResponse:(APIResponse *)response{
-
-    
-}
-
-/**
- * 登录成功后的回调
- */
-- (void)tencentDidLogin{
-
-//    NSLog(@"tencentLogin success!");
-    
-    [_tencentOAuth getUserInfo];
-    
-    NSString *access_token = [_tencentOAuth accessToken];
-    
-    //持久化token
-    [[NSUserDefaults standardUserDefaults] setObject:access_token forKey:@"kAccess_token"];
-    
-    //设置为nil---相当于重新请求数据
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"access_token"];
-    
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"username"];
-    
-    //持久化openId
-    [[NSUserDefaults standardUserDefaults] setObject:[_tencentOAuth openId] forKey:@"kOpenID"];
-    
-    //    NSLog(@"kqqopenid is %@",kQQOpenID);
-    
-    //持久化expirationDate
-    [[NSUserDefaults standardUserDefaults] setObject:[_tencentOAuth expirationDate] forKey:@"kExpirationDate"];
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    
-}
-
-/**
- * 登录失败后的回调
- * \param cancelled 代表用户是否主动退出登录
- */
-- (void)tencentDidNotLogin:(BOOL)cancelled{
-
-    NSLog(@"tencentLogin faild!");
-
-}
-
-/**
- * 登录时网络有问题的回调
- */
-- (void)tencentDidNotNetWork{
-
-    NSLog(@"Have no NetWork!");
-
-}
 
 
 //return后收起键盘
