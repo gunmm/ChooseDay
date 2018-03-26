@@ -175,65 +175,70 @@
     for (int i = 0; i < constellationArr.count; i++) {
     
         NSDictionary *parameters = @{@"key":@"4dc730b1d27ec0a357149f22adb30a62",@"consName":constellationArr[i],@"type":@"today"};
-        [GUNMMAFN getDataWithParameters:parameters withUrl:urlstr withBlock:^(id result) {
-            ConstellationModel *model = [ConstellationModel mj_objectWithKeyValues:result];
-            [requestDataArr addObject:model];
-            _assign++;
-            if (_assign == 12) {
-                //根据星座相应的排序将model添加到对应位置
-                for (int j = 0; j <requestDataArr.count; j++) {
-                    ConstellationModel *model2 = requestDataArr[j];
-                    
-                    for (int k = 0; k < _dataList.count; k++) {
-                        NSString *name = _dataList[k];
-                        if ([model2.name isEqualToString:name]) {
-                            [_dataList replaceObjectAtIndex:k withObject:model2];
-                            break;
+        
+        @try{
+            [GUNMMAFN getDataWithParameters:parameters withUrl:urlstr withBlock:^(id result) {
+                ConstellationModel *model = [ConstellationModel mj_objectWithKeyValues:result];
+                [requestDataArr addObject:model];
+                _assign++;
+                if (_assign == 12) {
+                    //根据星座相应的排序将model添加到对应位置
+                    for (int j = 0; j <requestDataArr.count; j++) {
+                        ConstellationModel *model2 = requestDataArr[j];
+                        
+                        for (int k = 0; k < _dataList.count; k++) {
+                            NSString *name = _dataList[k];
+                            if ([model2.name isEqualToString:name]) {
+                                [_dataList replaceObjectAtIndex:k withObject:model2];
+                                break;
+                            }
                         }
+                        
                     }
+                    
+                  
+                    
+                    [_icarous reloadData];
                     
                 }
                 
-//                for (int ii = 0; ii<_dataList.count; ii++) {
-//                    NSObject *mod = _dataList[ii];
-//                    if ([mod isKindOfClass:[NSString class]]) {
-//                        [_dataList removeObject:mod];
-//                    }
-//                }
-               
-                [_icarous reloadData];
                 
-            }
-
-            
-        } withFailedBlock:^(NSError *error) {
-            _assign++;
-
-            if (_assign == 12) {
-                //根据星座相应的排序将model添加到对应位置
-                for (int j = 0; j <requestDataArr.count; j++) {
-                    ConstellationModel *modell = requestDataArr[i];
-                    
-                    for (int k = 0; k < _dataList.count; k++) {
-                        if ([modell.name isEqualToString:_dataList[k]]) {
-                            [_dataList replaceObjectAtIndex:k withObject:modell];
+            } withFailedBlock:^(NSError *error) {
+                _assign++;
+                
+                if (_assign == 12) {
+                    //根据星座相应的排序将model添加到对应位置
+                    for (int j = 0; j <requestDataArr.count; j++) {
+                        ConstellationModel *modell = requestDataArr[i];
+                        
+                        for (int k = 0; k < _dataList.count; k++) {
+                            if ([modell.name isEqualToString:_dataList[k]]) {
+                                [_dataList replaceObjectAtIndex:k withObject:modell];
+                            }
                         }
+                        
                     }
+                    
+                 
+                    [_icarous reloadData];
                     
                 }
                 
-//                for (int ii = 0; ii<_dataList.count; ii++) {
-//                    NSObject *mod = _dataList[ii];
-//                    if ([mod isKindOfClass:[NSString class]]) {
-//                        [_dataList removeObject:mod];
-//                    }
-//                }
-                [_icarous reloadData];
                 
-            }
-
+            }];
+        }
+        @catch(NSException *exception){
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:exception.reason delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             
-        }];
+            alert.alertViewStyle = UIAlertViewStyleDefault;
+            
+            alert.tag = 11;
+            
+            [alert show];
+        }
+        @finally{
+            
+        }
         
         
         

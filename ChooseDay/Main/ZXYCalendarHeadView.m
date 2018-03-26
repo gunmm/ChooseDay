@@ -160,26 +160,44 @@ NSInteger const clearance=10;
         NSDictionary *parameter=@{@"key":@"b2db7c5227907eb0ad22fc11f739f93c",@"date":dateStr};
         
         
-        [manager GET:URL.absoluteString parameters:parameter progress:^(NSProgress * _Nonnull downloadProgress) {
-            nil;
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
+        
+        @try{
 
+            [manager GET:URL.absoluteString parameters:parameter progress:^(NSProgress * _Nonnull downloadProgress) {
+                nil;
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
+
+
+                _dataDic=[responseObject objectForKey:@"result"];
+
+                _almanacView.almanacModel=[ZXYAlmanacModel mj_objectWithKeyValues:_dataDic];
+
+
+
+                _dataT([_dataDic objectForKey:@"yangli"]);
+
+                _mengView.hidden=YES;
+
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+                NSLog(@"____%@",error);
+            }];
+        
+        }
+        @catch(NSException *exception){
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:exception.reason delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             
-            _dataDic=[responseObject objectForKey:@"result"];
+            alert.alertViewStyle = UIAlertViewStyleDefault;
             
-            _almanacView.almanacModel=[ZXYAlmanacModel mj_objectWithKeyValues:_dataDic];
+            alert.tag = 11;
             
+            [alert show];
+        }
+        @finally{
             
-            
-            _dataT([_dataDic objectForKey:@"yangli"]);
-            
-            _mengView.hidden=YES;
-            
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
-            NSLog(@"____%@",error);
-        }];
+        }
+        
         
         
         

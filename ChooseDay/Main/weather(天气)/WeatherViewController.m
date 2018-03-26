@@ -429,60 +429,78 @@
     
     NSDictionary *parameters = @{@"cityname":_city,@"key":@"b8b9b6f0294ff99d0043368504040174"};
     
-    [GUNMMAFN getDataWithParameters:parameters withUrl:urlstr withBlock:^(id result) {
-        //        NSLog(@"%@",result);
+    
+    @try{
         
-        NSDictionary *resu= [result objectForKey:@"result"];
-        
-        NSDictionary *data = [resu objectForKey:@"data"];
-        
-        [OutModel mj_setupObjectClassInArray:^NSDictionary *{
-            return @{@"weather":@"WeatherModel"};
+        [GUNMMAFN getDataWithParameters:parameters withUrl:urlstr withBlock:^(id result) {
+            //        NSLog(@"%@",result);
+            
+            NSDictionary *resu= [result objectForKey:@"result"];
+            
+            NSDictionary *data = [resu objectForKey:@"data"];
+            
+            [OutModel mj_setupObjectClassInArray:^NSDictionary *{
+                return @{@"weather":@"WeatherModel"};
+            }];
+            
+            OutModel *outModel = [OutModel mj_objectWithKeyValues:data];
+            
+            
+            [_dataList addObject:outModel];
+            
+            //设置_pageC的总显示页和右边靠屏幕
+            _pageC.numberOfPages = _dataList.count;
+            //        [_pageC sizeToFit];
+            //        _pageC.left = 20;
+            
+            
+            
+            //数据加载完成 _outCollectionView重新加载数据
+            [_outCollectionView reloadData];
+            
+            
+            
+            //因为删除时候原来写的滑动方法在数据没加载完就执行了有bug所以写的这个
+            if (_deleCi) {
+                [_outCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+                _deleCi = 0;
+            }
+            
+            
+            //        [_cityVc dismissViewControllerAnimated:YES completion:nil];
+            
+            
+            if (_assign) {
+                
+                //加载历史天气
+                [self loadHistoryWeather];
+                
+                _assign = 0;
+                
+                _pageC.currentPage = 0;
+                
+                
+            }
+            
+            _loadView.hidden = YES;
+            
         }];
         
-        OutModel *outModel = [OutModel mj_objectWithKeyValues:data];
+    }
+    @catch(NSException *exception){
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:exception.reason delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         
+        alert.alertViewStyle = UIAlertViewStyleDefault;
         
-        [_dataList addObject:outModel];
+        alert.tag = 11;
         
-        //设置_pageC的总显示页和右边靠屏幕
-        _pageC.numberOfPages = _dataList.count;
-        //        [_pageC sizeToFit];
-        //        _pageC.left = 20;
+        [alert show];
+    }
+    @finally{
         
-        
-        
-        //数据加载完成 _outCollectionView重新加载数据
-        [_outCollectionView reloadData];
-        
-        
-        
-        //因为删除时候原来写的滑动方法在数据没加载完就执行了有bug所以写的这个
-        if (_deleCi) {
-            [_outCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-            _deleCi = 0;
-        }
-        
-        
-        //        [_cityVc dismissViewControllerAnimated:YES completion:nil];
-        
-        
-        if (_assign) {
-            
-            //加载历史天气
-            [self loadHistoryWeather];
-            
-            _assign = 0;
-            
-            _pageC.currentPage = 0;
-            
-            
-        }
-        
-        
-        _loadView.hidden = YES;
-        
-    }];
+    }
+    
+    
     
     
 }
