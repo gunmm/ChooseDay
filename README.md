@@ -11,7 +11,7 @@
 
 日历黄历
 
-![](http://i4.buimg.com/588926/ba92576bd3a8bbae.png)
+![](http://oqspvtuxb.bkt.clouddn.com/18-8-20/20670819.jpg)
 
 星座运势
 
@@ -19,9 +19,9 @@
 
 天气预报
 
-![](http://i4.buimg.com/588926/9f8ad8220f02b68e.png)
+![](http://oqspvtuxb.bkt.clouddn.com/18-8-20/44190572.jpg)
 
 主题切换
 
-![](http://i2.muimg.com/588926/89d7f3011c68a5fd.png)
+![](http://oqspvtuxb.bkt.clouddn.com/18-8-20/87957112.jpg)
 
