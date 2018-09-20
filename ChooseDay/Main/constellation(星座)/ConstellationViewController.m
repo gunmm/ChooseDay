@@ -174,7 +174,7 @@
     //遍历数组获取星座数据
     for (int i = 0; i < constellationArr.count; i++) {
     
-        NSDictionary *parameters = @{@"key":@"4dc730b1d27ec0a357149f22adb30a62",@"consName":constellationArr[i],@"type":@"today"};
+        NSDictionary *parameters = @{@"key":@"12bb68a2f0a5b97bed27d660ef23229f",@"consName":constellationArr[i],@"type":@"today"};
         
         @try{
             [GUNMMAFN getDataWithParameters:parameters withUrl:urlstr withBlock:^(id result) {
